@@ -17,6 +17,7 @@ let respuesta = {
     mensaje:''
 }
 
+
 app.get('/',function (req, res) {
 
     respuesta = {
@@ -29,19 +30,18 @@ app.get('/',function (req, res) {
 
    app.route('/usuario')
    .get(function (req, res) {
-
     respuesta = {
         error : false,
         codigo:200,
         mensaje:''
     };
-
     if (usuario.nombre ==='' || usuario.apellido === '')
     {
         respuesta = {
             error : true,
             codigo:501,
-            mensaje:'El usuario no ha sido creado'
+            mensaje:'El usuario no ha sido creado',
+            respuesta: usuario
         };
     }
     else{
@@ -54,7 +54,7 @@ app.get('/',function (req, res) {
     } 
     res.send(respuesta);
    })
-   .post('/usuario',function (req, res) {
+   .post(function (req, res) {
     if (!req.body.nombre || !req.body.apellido)
     {
         respuesta = {
@@ -85,8 +85,8 @@ app.get('/',function (req, res) {
            }
     }
     res.send(respuesta);
-   })
-   .put('/usuario', function (req, res) {
+   });
+   /*.put('/usuario', function (req, res) {
     if(!req.body.nombre || !req.body.apellido) {
      respuesta = {
       error: true,
@@ -135,7 +135,7 @@ app.get('/',function (req, res) {
     }
     res.send(respuesta);
    });
-   
+   */
    app.use(function(req, res, next) {
     respuesta = {
      error: true, 
@@ -144,6 +144,8 @@ app.get('/',function (req, res) {
     };
     res.status(404).send(respuesta);
    });
+
    app.listen(3000, () => {
     console.log("El servidor está inicializado en el puerto 3000");
    });
+   
