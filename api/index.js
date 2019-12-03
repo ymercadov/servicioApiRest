@@ -85,8 +85,8 @@ app.get('/',function (req, res) {
            }
     }
     res.send(respuesta);
-   });
-   /*.put('/usuario', function (req, res) {
+   })
+   .put(function (req, res) {
     if(!req.body.nombre || !req.body.apellido) {
      respuesta = {
       error: true,
@@ -115,7 +115,7 @@ app.get('/',function (req, res) {
     }    
     res.send(respuesta);
    })
-   .delete('/usuario', function (req, res) {
+   .delete(function (req, res) {
     if(usuario.nombre === '' || usuario.apellido === '') {
      respuesta = {
       error: true,
@@ -135,7 +135,7 @@ app.get('/',function (req, res) {
     }
     res.send(respuesta);
    });
-   */
+   
    app.use(function(req, res, next) {
     respuesta = {
      error: true, 
